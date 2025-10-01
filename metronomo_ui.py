@@ -118,7 +118,7 @@ def abrir_metronomo():
               bg="red", fg="white", font=("Arial", 12, "bold")).pack(pady=10)
 
     # --- Atalhos ---
-    bind_atual = "<Control-F5>"
+    bind_atual = "Nenhum"
 
     frame_atalho = tk.Frame(met_win)
     frame_atalho.pack(pady=10)

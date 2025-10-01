@@ -1,5 +1,6 @@
 import pygame
 import os
+import sys
 
 class Metronomo:
     def __init__(self, callback_visual=None):
@@ -11,13 +12,18 @@ class Metronomo:
         self.current_tempo = 0
         self.callback_visual = callback_visual
 
-        # Sons padrão
-        self.som_tempo1 = pygame.mixer.Sound(
-            r"C:/Users/yaush/Downloads/Metronomo/sons/metronomo0_forte.wav"
-        )
-        self.som_outros = pygame.mixer.Sound(
-            r"C:/Users/yaush/Downloads/Metronomo/sons/metronomo0_fraco.wav"
-        )
+        # Caminho base: script ou exe
+        if getattr(sys, "frozen", False):
+            base_path = sys._MEIPASS
+        else:
+            base_path = os.path.dirname(__file__)
+
+        # Caminho para a pasta sons
+        caminho_sons = os.path.join(base_path, "sons")
+
+        # Carrega sons padrão
+        self.som_tempo1 = pygame.mixer.Sound(os.path.join(caminho_sons, "metronomo0_forte.wav"))
+        self.som_outros = pygame.mixer.Sound(os.path.join(caminho_sons, "metronomo0_fraco.wav"))
         self.set_volume(self.volume)
 
     def set_som_tempo1(self, path):
